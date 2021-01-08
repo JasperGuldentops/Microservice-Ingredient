@@ -36,9 +36,9 @@ jobs:
         uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
-          postgresql db: userdb
-          postgresql user: root
-          postgresql password: abc123
+          postgresql db: 'userdb'
+          postgresql user: 'root'
+          postgresql password: ${{ secrets.POSTGRES_ROOTPASSWORD }}
 
       - name: Test and build project
         run: mvn -f pom.xml clean install
