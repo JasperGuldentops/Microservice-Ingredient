@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
+    List<Ingredient> findAll();
     List<Ingredient> findIngredientsByRecipeCode(String code);
     List<Ingredient> findIngredientsByNameContaining(String name);
-    List<Ingredient> findAll();
     Ingredient findIngredientByCode(String code);
 }

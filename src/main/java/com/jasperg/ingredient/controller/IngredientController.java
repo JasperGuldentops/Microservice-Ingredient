@@ -28,6 +28,7 @@ public class IngredientController {
 
     @GetMapping("/ingredients")
     public List<Ingredient> getIngredients() {
+
         return ingredientRepository.findAll();
     }
 
