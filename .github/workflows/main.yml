@@ -38,7 +38,7 @@ jobs:
           postgresql version: '11'
           postgresql db: userdb
           postgresql user: root
-          postgresql password: secret.POSTGRES_PASSWORD
+          postgresql password: secret.POSTGRES_ROOTPASSWORD
 
       - name: Test and build project
         run: mvn -f pom.xml clean install
