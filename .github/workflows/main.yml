@@ -1,5 +1,5 @@
   
-name: Test, Build and Upload Ingredient microservice
+name: Test, Build and Upload for Ingredient microservice
 
 on: push
 
@@ -59,7 +59,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/comment-service-ex:latest .
+        run: docker build -t ${{ secrets.DOCKER_USER }}/ingredient-service:latest .
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/comment-service-ex:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/ingredient-service:latest
