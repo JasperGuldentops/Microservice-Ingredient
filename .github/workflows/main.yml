@@ -1,5 +1,5 @@
   
-name: Test, Build and Upload Recipe microservice
+name: Test, Build and Upload Ingredient microservice
 
 on: push
 
@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Build jar file
-          path: ./target/recipe-0.0.1-SNAPSHOT.jar
+          path: ./target/ingredient-0.0.1-SNAPSHOT.jar
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
