@@ -32,12 +32,18 @@ public class IngredientControllerIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private Ingredient ingredient1 = new Ingredient("Tomato", 2, "Pizza-0000", "0000");
-    private Ingredient ingredient2 = new Ingredient("Water", 250, "Pizza-0000", "0001");
-    private Ingredient ingredient3 = new Ingredient("Milk", 200, "Milkshake-0000", "0000");
-    private Ingredient ingredient4 = new Ingredient("Sugar", 50, "Milkshake-0000", "0001");
-    private Ingredient ingredientToDelete = new Ingredient("Egg", 3, "Omelette-0000", "0000");
-    private Ingredient ingredientToChange = new Ingredient("Saltz", 1, "Omelette-0000", "0001");
+    private Ingredient ingredient1 = new Ingredient("Tomato", 2,
+            "Pizza-0000", "0000");
+    private Ingredient ingredient2 = new Ingredient("Water", 250,
+            "Pizza-0000", "0001");
+    private Ingredient ingredient3 = new Ingredient("Milk", 200,
+            "Milkshake-0000", "0000");
+    private Ingredient ingredient4 = new Ingredient("Sugar", 50,
+            "Milkshake-0000", "0001");
+    private Ingredient ingredientToChange = new Ingredient("Saltz", 1,
+            "Omelette-0000", "0001");
+    private Ingredient ingredientToDelete = new Ingredient("Egg", 3,
+            "Omelette-0000", "0000");
 
     @BeforeEach
     public void beforeAllTests() {
@@ -47,8 +53,8 @@ public class IngredientControllerIntegrationTest {
         ingredientRepository.save(ingredient2);
         ingredientRepository.save(ingredient3);
         ingredientRepository.save(ingredient4);
-        ingredientRepository.save(ingredientToDelete);
         ingredientRepository.save(ingredientToChange);
+        ingredientRepository.save(ingredientToDelete);
     }
 
     @AfterEach
@@ -71,22 +77,27 @@ public class IngredientControllerIntegrationTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(6)))
+
                 .andExpect(jsonPath("$[0].name", is("Tomato")))
                 .andExpect(jsonPath("$[0].amount", is(2)))
                 .andExpect(jsonPath("$[0].recipeCode", is("Pizza-0000")))
                 .andExpect(jsonPath("$[0].code", is("Pizza-0000-0000")))
+
                 .andExpect(jsonPath("$[1].name", is("Water")))
                 .andExpect(jsonPath("$[1].amount", is(250)))
                 .andExpect(jsonPath("$[1].recipeCode", is("Pizza-0000")))
                 .andExpect(jsonPath("$[1].code", is("Pizza-0000-0001")))
+
                 .andExpect(jsonPath("$[2].name", is("Milk")))
                 .andExpect(jsonPath("$[2].amount", is(200)))
                 .andExpect(jsonPath("$[2].recipeCode", is("Milkshake-0000")))
                 .andExpect(jsonPath("$[2].code", is("Milkshake-0000-0000")))
+
                 .andExpect(jsonPath("$[3].name", is("Sugar")))
                 .andExpect(jsonPath("$[3].amount", is(50)))
                 .andExpect(jsonPath("$[3].recipeCode", is("Milkshake-0000")))
                 .andExpect(jsonPath("$[3].code", is("Milkshake-0000-0001")))
+
                 .andExpect(jsonPath("$[4].name", is("Egg")))
                 .andExpect(jsonPath("$[4].amount", is(3)))
                 .andExpect(jsonPath("$[4].recipeCode", is("Omelette-0000")))
@@ -104,10 +115,12 @@ public class IngredientControllerIntegrationTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
+
                 .andExpect(jsonPath("$[0].name", is("Milk")))
                 .andExpect(jsonPath("$[0].amount", is(200)))
                 .andExpect(jsonPath("$[0].recipeCode", is("Milkshake-0000")))
                 .andExpect(jsonPath("$[0].code", is("Milkshake-0000-0000")))
+
                 .andExpect(jsonPath("$[1].name", is("Sugar")))
                 .andExpect(jsonPath("$[1].amount", is(50)))
                 .andExpect(jsonPath("$[1].recipeCode", is("Milkshake-0000")))
@@ -125,10 +138,12 @@ public class IngredientControllerIntegrationTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
+
                 .andExpect(jsonPath("$[0].name", is("Tomato")))
                 .andExpect(jsonPath("$[0].amount", is(2)))
                 .andExpect(jsonPath("$[0].recipeCode", is("Pizza-0000")))
                 .andExpect(jsonPath("$[0].code", is("Pizza-0000-0000")))
+
                 .andExpect(jsonPath("$[1].name", is("Water")))
                 .andExpect(jsonPath("$[1].amount", is(250)))
                 .andExpect(jsonPath("$[1].recipeCode", is("Pizza-0000")))
@@ -141,6 +156,7 @@ public class IngredientControllerIntegrationTest {
         mockMvc.perform(get("/ingredients/code/{code}", "Pizza-0000-0000"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+
                 .andExpect(jsonPath("$.name", is("Tomato")))
                 .andExpect(jsonPath("$.amount", is(2)))
                 .andExpect(jsonPath("$.recipeCode", is("Pizza-0000")))
@@ -157,6 +173,7 @@ public class IngredientControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+
                 .andExpect(jsonPath("$.name", is("Ice cream")))
                 .andExpect(jsonPath("$.amount", is(200)))
                 .andExpect(jsonPath("$.recipeCode", is("Milkshake-0000")))
@@ -173,6 +190,7 @@ public class IngredientControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+
                 .andExpect(jsonPath("$.name", is("Salt")))
                 .andExpect(jsonPath("$.amount", is(3)))
                 .andExpect(jsonPath("$.recipeCode", is("Omelette-0000")))
