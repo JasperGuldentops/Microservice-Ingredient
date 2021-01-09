@@ -27,18 +27,10 @@ public class IngredientControllerUnitTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @ MockBean
+    @MockBean
     private IngredientRepository ingredientRepository;
 
     private ObjectMapper mapper = new ObjectMapper();
-
-
-//    private Ingredient ingredient1 = new Ingredient("Tomato", 2, "Pizza-0000", "0000");
-//    private Ingredient ingredient2 = new Ingredient("Water", 250, "Pizza-0000", "0001");
-//    private Ingredient ingredient3 = new Ingredient("Milk", 200, "Milkshake-0000", "0000");
-//    private Ingredient ingredient4 = new Ingredient("Sugar", 50, "Milkshake-0000", "0001");
-//    private Ingredient ingredientToDelete = new Ingredient("Egg", 3, "Omelette-0000", "0000");
-//    private Ingredient ingredientToChange = new Ingredient("Saltz", 1, "Omelette-0000", "0001");
 
     @Test
     public void givenIngredient_whenGetAllIngredient_thenReturnJsonIngredients() throws Exception {
@@ -121,9 +113,9 @@ public class IngredientControllerUnitTest {
     @Test
     public void givenIngredient_whenGetIngredientByCode_thenReturnJsonIngredient() throws Exception {
 
-        Ingredient ingredient1 = new Ingredient("Tomato", 2, "Pizza-0000", "0000");
+        Ingredient ingredient = new Ingredient("Tomato", 2, "Pizza-0000", "0000");
 
-        given(ingredientRepository.findIngredientByCode("Pizza-0000-0000")).willReturn(ingredient1);
+        given(ingredientRepository.findIngredientByCode("Pizza-0000-0000")).willReturn(ingredient);
 
         mockMvc.perform(get("/ingredients/code/{code}", "Pizza-0000-0000"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -159,7 +151,7 @@ public class IngredientControllerUnitTest {
 
         Ingredient updateIngredient = new Ingredient("Salt", 3, "Omelette-0000", "0001");
 
-        mockMvc.perform(post("/ingredients")
+        mockMvc.perform(put("/ingredients")
                 .content(mapper.writeValueAsString(updateIngredient))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -191,4 +183,5 @@ public class IngredientControllerUnitTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
+
 }

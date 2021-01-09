@@ -41,6 +41,7 @@ public class IngredientControllerIntegrationTest {
 
     @BeforeEach
     public void beforeAllTests() {
+
         ingredientRepository.deleteAll();
         ingredientRepository.save(ingredient1);
         ingredientRepository.save(ingredient2);
@@ -52,11 +53,12 @@ public class IngredientControllerIntegrationTest {
 
     @AfterEach
     public void afterAllTests() {
+
         ingredientRepository.deleteAll();
     }
 
     @Test
-    public void givenIngredient_whenGetAllIngredient_thenReturnJsonIngredients() throws Exception {
+    public void givenIngredient_whenGetAllIngredients_thenReturnJsonIngredients() throws Exception {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(ingredient1);
@@ -92,7 +94,7 @@ public class IngredientControllerIntegrationTest {
     }
 
     @Test
-    public void givenIngredient_whenGetIngredientByRecipeCode_thenReturnJsonIngredients() throws Exception {
+    public void givenIngredient_whenGetIngredientsByRecipeCode_thenReturnJsonIngredients() throws Exception {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(ingredient3);
@@ -113,7 +115,7 @@ public class IngredientControllerIntegrationTest {
     }
 
     @Test
-    public void givenIngredient_whenGetIngredientByNameContaining_thenReturnJsonIngredients() throws Exception {
+    public void givenIngredient_whenGetIngredientsByNameContaining_thenReturnJsonIngredients() throws Exception {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(ingredient1);
@@ -166,7 +168,7 @@ public class IngredientControllerIntegrationTest {
 
         Ingredient updateIngredient = new Ingredient("Salt", 3, "Omelette-0000", "0001");
 
-        mockMvc.perform(post("/ingredients")
+        mockMvc.perform(put("/ingredients")
                 .content(mapper.writeValueAsString(updateIngredient))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
