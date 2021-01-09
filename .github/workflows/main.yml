@@ -36,7 +36,7 @@ jobs:
         uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
-          postgresql db: 'userdb'
+          postgresql db: 'ingredientdb'
           postgresql user: 'root'
           postgresql password: ${{ secrets.POSTGRES_ROOTPASSWORD }}
 
