@@ -166,7 +166,7 @@ public class IngredientControllerIntegrationTest {
     @Test
     public void whenPostIngredient_thenReturnJsonIngredient() throws Exception {
 
-        Ingredient newIngredient = new Ingredient("Ice cream", 200, "Milkshake-0000", "0002");
+        Ingredient newIngredient = new Ingredient("Ice cream", 200, "Milkshake-0000");
 
         mockMvc.perform(post("/ingredients")
                 .content(mapper.writeValueAsString(newIngredient))
@@ -176,8 +176,8 @@ public class IngredientControllerIntegrationTest {
 
                 .andExpect(jsonPath("$.name", is("Ice cream")))
                 .andExpect(jsonPath("$.amount", is(200)))
-                .andExpect(jsonPath("$.recipeCode", is("Milkshake-0000")))
-                .andExpect(jsonPath("$.code", is("Milkshake-0000-0002")));
+                .andExpect(jsonPath("$.recipeCode", is("Milkshake-0000")));
+                //.andExpect(jsonPath("$.code", is("Milkshake-0000-0002"))); Can't check on code since it's generated on POST
     }
 
     @Test

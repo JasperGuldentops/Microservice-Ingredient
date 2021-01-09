@@ -53,9 +53,12 @@ public class IngredientController {
     @PostMapping("/ingredients")
     public Ingredient addIngredient(@RequestBody Ingredient ingredient){
 
-        ingredientRepository.save(ingredient);
+        Ingredient newIngredient = new Ingredient(ingredient.getName(), ingredient.getAmount(),
+                ingredient.getRecipeCode());
 
-        return ingredient;
+        ingredientRepository.save(newIngredient);
+
+        return newIngredient;
     }
 
     @PutMapping("/ingredients")
