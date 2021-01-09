@@ -15,16 +15,16 @@ public class IngredientController {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    @PostConstruct
-    public void fillDB() {
-        if(ingredientRepository.count() == 0) {
-            ingredientRepository.save(new Ingredient("Tomato", 2, "Pizza0000", "0000"));
-            ingredientRepository.save(new Ingredient("Cheese", 150, "Pizza0000", "0000"));
-            ingredientRepository.save(new Ingredient("Flour", 500, "Pizza0000", "0000"));
-            ingredientRepository.save(new Ingredient("Egg", 2, "Pizza0000", "0000"));
-            ingredientRepository.save(new Ingredient("Water", 200, "Pizza0000", "0000"));
-        }
-    }
+//    @PostConstruct
+//    public void fillDB() {
+//        if(ingredientRepository.count() == 0) {
+//            ingredientRepository.save(new Ingredient("Tomato", 2, "Pizza0000", "0000"));
+//            ingredientRepository.save(new Ingredient("Cheese", 150, "Pizza0000", "0000"));
+//            ingredientRepository.save(new Ingredient("Flour", 500, "Pizza0000", "0000"));
+//            ingredientRepository.save(new Ingredient("Egg", 2, "Pizza0000", "0000"));
+//            ingredientRepository.save(new Ingredient("Water", 200, "Pizza0000", "0000"));
+//        }
+//    }
 
     @GetMapping("/ingredients")
     public List<Ingredient> getIngredients() {
