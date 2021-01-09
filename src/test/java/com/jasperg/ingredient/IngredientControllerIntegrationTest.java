@@ -106,10 +106,10 @@ public class IngredientControllerIntegrationTest {
                 .andExpect(jsonPath("$[0].amount", is(200)))
                 .andExpect(jsonPath("$[0].recipeCode", is("Milkshake-0000")))
                 .andExpect(jsonPath("$[0].code", is("Milkshake-0000-0000")))
-                .andExpect(jsonPath("$[0].name", is("Sugar")))
-                .andExpect(jsonPath("$[0].amount", is(50)))
-                .andExpect(jsonPath("$[0].recipeCode", is("Milkshake-0000")))
-                .andExpect(jsonPath("$[0].code", is("Milkshake-0000-0001")));
+                .andExpect(jsonPath("$[1].name", is("Sugar")))
+                .andExpect(jsonPath("$[1].amount", is(50)))
+                .andExpect(jsonPath("$[1].recipeCode", is("Milkshake-0000")))
+                .andExpect(jsonPath("$[1].code", is("Milkshake-0000-0001")));
     }
 
     @Test

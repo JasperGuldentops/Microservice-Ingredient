@@ -26,7 +26,7 @@ public class Ingredient {
         this.name = name;
         this.amount = amount;
         this.recipeCode = recipeCode;
-        this.setCode(recipeCode);
+        this.code = recipeCode + "-" + Helper.getRandomString(4);
     }
 
     public Ingredient(String name, int amount, String recipeCode, String codeString) {
@@ -64,7 +64,7 @@ public class Ingredient {
         return code;
     }
 
-    public void setCode(String recipeCode) {
-        this.code = recipeCode + "-" + Helper.getRandomString(4);
+    public void setCode(String code) {
+        this.code = code;
     }
 }
